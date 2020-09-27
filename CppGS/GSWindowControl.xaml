@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="CppGS.GSWindowControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CppGS"
+             xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
+             Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
+             Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
+             mc:Ignorable="d"
+             Name="MyToolWindow">
+    <ScrollViewer x:Name="Menu">
+        <Grid Margin="20">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding Path=DebugOutput}" />
+
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2"
+                           HorizontalAlignment="Left">
+                    Configure refactoring parameters for class members.
+                </TextBlock>
+                <DockPanel Height="30"
+                           Margin="0 5">
+                    <TextBlock VerticalAlignment="Center"
+                               Text="Declaration file: " />
+                    <TextBlock FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Right"
+                               Text="{Binding Path=DeclarationFile}" />
+
+                </DockPanel>
+                <DockPanel Height="30"
+                           Margin="0 5">
+                    <TextBlock VerticalAlignment="Center"
+                               Text="Definition file: " />
+                    <ComboBox MinWidth="75"
+                              HorizontalAlignment="Right"
+                              VerticalContentAlignment="Center"
+                              ItemsSource="{Binding Path=DefinitionFileVariants}"
+                              SelectedItem="{Binding Path=DefinitionFile}">
+
+                    </ComboBox>
+                </DockPanel>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+
+</UserControl>
